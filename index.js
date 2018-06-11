@@ -9,13 +9,11 @@ const connect = mongoose.connect(url);
 
 connect.then((db) => {
     //const db = client.db("conFusion");
-    var db = mongoose.connection;
+    //var db = mongoose.connection;
     console.log("Connected correctly to server");
-    return db.collection("dishes").drop();
-})
-.then((db) => {
+
     var newDish = Dishes({
-        name: "Anh Nguyen1",
+        name: "Anh Nguyen2",
         description: "test"
     });
 
@@ -28,12 +26,12 @@ connect.then((db) => {
         .then((dishes) => {
             console.log(dishes);
 
-            return db.collection("dishes").drop();
-            //return Dishes.remove({});
+            //return db.collection("dishes").drop();
+            return Dishes.remove({});
         })
         .then(() => {
-            return db.close();
-            //return mongoose.disconnect();
+            //return db.close();
+            return mongoose.disconnect();
         })
         .catch((err) => {
             console.log(err);
